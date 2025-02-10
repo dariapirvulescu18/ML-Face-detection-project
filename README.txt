@@ -1,66 +1,78 @@
-1.)Biblioteci folosite impreuna cu versiunile lor
+#Face detection project
 
-NumPy version: 1.26.4
-scikit-learn version: 1.5.2
-scikit-image version: 0.24.0
-Matplotlib version: 3.8.4
-OpenCV version: 4.10.0.84
-Python version: 3.9.13
-pip: 22.0.4
+## Libraries Used with Versions
 
-Jupyter - 1.1.1
-Jupyter-server - 2.14.2
-Notebook - 7.2.2
+- **NumPy version**: 1.26.4
+- **scikit-learn version**: 1.5.2
+- **scikit-image version**: 0.24.0
+- **Matplotlib version**: 3.8.4
+- **OpenCV version**: 4.10.0.84
+- **Python version**: 3.9.13
+- **pip**: 22.0.4
 
-!!!Timpul de prelucrare este intre 30 de secunde si 2 minute pe imagine (in general aproximativ 5 ore)
+- **Jupyter**: 1.1.1
+- **Jupyter-server**: 2.14.2
+- **Notebook**: 7.2.2
 
-2.)Cum se ruleaza codul:
-############## Se ruleaza #######################
-A.)Tot ce are un numar
-1.)Task1 si Task2:
-Tot ce are un numar in nume se ruleaza in ordinea numerelor. Adica 1_obtine_rezultate.ipynb, 2_dad_result.ipynb
-3_deedee_result.ipynb, 4_dexter_result.ipynb, 5_mom_result.ipynb. Notebook-urile care au nume de personaj
-fac predictiile pentru persoanje, iar 1_obtine_rezultate.ipynb pentru toate fetele. Daca memoria calculatorului permite 
-notebookurile pot fi rulate in paralel.
-In fiecare dintre aceste notebook-uri in ultima celula exista un test_img_path='./test_daria_custom/images/'.
-Acesta se schimba cu calea catre fisierul de test. In rest, nu mai trebuie facuta nicio modificare, notebook-urile se
-ruleaza integral.
+**Processing Time**: Between 30 seconds and 2 minutes per image (generally around 5 hours in total).
 
-2.) Task-ul bonus
-Notebook-ul YOLO.ipynb contine codul ce face predictiile pentru YOLO. In prima celula se afla:
-test_images_dir = Path("./validare/validare/") care trebuie schimbat cu fisierul unde se afla imaginile
-de test. Toate predictiile se vor gasesc in folderul 351_Pirvulescu_Daria/task1_bonus respectiv
-351_Pirvulescu_Daria/task2_bonus.
+---
 
-############## Nu se ruleaza #######################
-B.)Tot ce nu are numar
-Tot ce nu are numar reprezinta procesarea de date, extragere de descriptori si antrenarea de SVC.
-Acestea nu se ruleaza si sunt doar o dovada a parcurgerii etapelor proiectului.
-1.)Task1 si Task2:
--extarge_patch_poz.ipynb ia pozele din fisierul de antrenare si adnotarile si grupeaza fetele decupate pe forme
- geometrice diferite (patrat, dreptunghi si dreptunghi inalt) in functie de aspect ratio.
+## How to Run the Code
 
--descriptori.ipynb alcatuieste atat descriptorii pozitivi cat si cei negativi
+### A.) Files with Numbers (Executable)
+1. **Task1 and Task2**:
+   - Files with numbers in their names should be executed in numerical order. For example:
+     - `1_obtine_rezultate.ipynb`
+     - `2_dad_result.ipynb`
+     - `3_deedee_result.ipynb`
+     - `4_dexter_result.ipynb`
+     - `5_mom_result.ipynb`
+   - Notebooks named after characters make predictions for those characters, while `1_obtine_rezultate.ipynb` processes all faces.
+   - If the computer's memory allows, these notebooks can be run in parallel.
+   - In each notebook, the last cell contains a variable `test_img_path='./test_daria_custom/images/'`. This should be changed to the path of the test file. No other modifications are needed; the notebooks can be run entirely.
 
--antreneaza.ipynb antreneaza cele 3+12 SVC uri cu kernel rbf
+2. **Bonus Task**:
+   - The `YOLO.ipynb` notebook contains the code for YOLO predictions. The first cell contains:
+     ```python
+     test_images_dir = Path("./validare/validare/")
+     ```
+     This should be changed to the directory containing the test images. All predictions will be saved in the folders:
+     - `351_Pirvulescu_Daria/task1_bonus`
+     - `351_Pirvulescu_Daria/task2_bonus`
 
-2.)Task Bonus
--YOLO_prepare_data.ipynb imi scrie datele de antrenare pentru YOLO in format suportat de acesta.
+### B.) Files Without Numbers (Non-Executable)
+Files without numbers represent data processing, descriptor extraction, and SVC training. These are not meant to be executed and serve as proof of the project's progression.
 
+1. **Task1 and Task2**:
+   - `extrage_patch_poz.ipynb`: Takes training images and annotations, then groups cropped faces into different geometric shapes (square, rectangle, tall rectangle) based on aspect ratio.
+   - `descriptori.ipynb`: Creates both positive and negative descriptors.
+   - `antreneaza.ipynb`: Trains 3+12 SVCs with an RBF kernel.
 
-*************************
-Daca se vrea rularea lor:
--extarge_patch_poz.ipynb
-ultima celula primele 4 randuri reprezinta path-ul catre fisierele de antrenare se va schimba corespunzator
--descriptori.ipynb
-pentru descriptorii negativi se schimba celula 6 primele 4 randuri cu path-ul catre folderul de imagini de antrenare
-pentru descriptorii pozitivi trebuie rulat extarge_patch_poz.ipynb  inainte
--antreneaza.ipynb
-trebuie rulate cele doua de sus pentru a rula antreneaza.ipynb
+2. **Bonus Task**:
+   - `YOLO_prepare_data.ipynb`: Prepares training data for YOLO in a supported format.
 
--YOLO_prepare_data.ipynb
-primele 2 celule comentate reprezinta prelucarea datelor de validare; eu am ales sa las doar 20 de imagini
-per validare de aceea daca se ruleaza trebuie modificate functiile apelate astfel
- scrie_img_pt_YOLO->for file in files[:20]:
- scrie_labels_pt_YOLO_task2->  # if img_name=='021.jpg':     return
-ultima celula comentata reprezinta trainul pe care l-am facut pe kaggle si trebuie modificat calea catre data.yaml
+---
+
+### If You Want to Run Non-Executable Files:
+1. **extrage_patch_poz.ipynb**:
+   - Modify the first 4 lines of the last cell to point to the training files.
+
+2. **descriptori.ipynb**:
+   - For negative descriptors, change the first 4 lines of cell 6 to the training images folder path.
+   - For positive descriptors, run `extrage_patch_poz.ipynb` first.
+
+3. **antreneaza.ipynb**:
+   - Run the above two notebooks before executing this one.
+
+4. **YOLO_prepare_data.ipynb**:
+   - The first two commented cells process validation data. Only 20 validation images were used, so modify the functions as follows:
+     ```python
+     scrie_img_pt_YOLO -> for file in files[:20]:
+     scrie_labels_pt_YOLO_task2 -> # if img_name=='021.jpg': return
+     ```
+   - The last commented cell represents the training done on Kaggle. Modify the path to `data.yaml`.
+
+---
+
+For more details, refer to the [documentation](link_to_documentation_file_in_repository).
