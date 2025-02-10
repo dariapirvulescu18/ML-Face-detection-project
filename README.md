@@ -84,4 +84,4 @@ Files without numbers represent data processing, descriptor extraction, and SVC 
 
 ---
 
-For more details, refer to the [documentation](link_to_documentation_file_in_repository).
+For more details, refer to the [documentation](https://github.com/dariapirvulescu18/ML-Face-detection-project/blob/main/documentatie.pdf).
